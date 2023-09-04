@@ -45,7 +45,7 @@ public class PokerCard extends Card {
             return true;
         }
 
-        // if they are different objects, but their suits AND values match, consifer them equal
+        // if they are different objects, but their suits AND values match, consider them equal
         if (this.suit.equals(((PokerCard) other).suit)) {
             return this.value == ((PokerCard) other).value;
         }

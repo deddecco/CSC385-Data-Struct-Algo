@@ -16,5 +16,3 @@ public class EmptyDeckException extends RuntimeException {
         super(msg);
     }
 }
-
-

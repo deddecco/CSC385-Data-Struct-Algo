@@ -16,8 +16,8 @@ public class SoccerTest {
         int depth = 0;
         while (!soccerDeck.isEmpty()) {
             depth += 1;
-            SoccerCard pc = (SoccerCard) soccerDeck.draw();
-            if (pc.equals(yourCard)) {
+            SoccerCard sc = (SoccerCard) soccerDeck.draw();
+            if (sc.equals(yourCard)) {
                 System.out.println("The " + yourCard + " was " + depth + " cards in the deck.");
                 break;
             }
