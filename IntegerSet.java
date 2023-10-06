@@ -46,13 +46,14 @@ public class IntegerSet {
         // sort
         mergeSort(arr);
 
-        // at its biggest, the array of unique elements is the same size as the original, if all elements in the original are unique
+        // at its biggest, the array of unique elements is the same size as the original,
+        // if all elements in the original are unique
         int[] uniqueElements = new int[arr.length];
         // the index in the new array
         int idx = 0;
         // looking through the original input
         for (int i = 0; i < arr.length; i++) {
-            // move forward over runs of duplicates
+            // move forward through runs of duplicates
             while ((i < (arr.length - 1)) && (arr[i] == arr[i + 1])) {
                 i++;
             }
@@ -166,10 +167,10 @@ public class IntegerSet {
 
 
         // adjust the union by checking for and removing duplicates and placing the new set in a new array
-        int[] adjustedUnion = uniqueElements(union);
+        int[] uniqueUnion = uniqueElements(union);
 
         // now we have all the unique elements in set 1 and all the unique elements in set 2 in a single array
-        return new IntegerSet(adjustedUnion);
+        return new IntegerSet(uniqueUnion);
     }
 
     /**
@@ -216,14 +217,13 @@ public class IntegerSet {
                 j++;
                 // increment the size of the intersection
                 intersectionActualSize++;
-                // because they move together, the counter of the sizew of the intersection and the index in intersectionPrelim should always be equal
+                // because they move together, the counter of the sizew of the intersection and the index in
+                // intersectionPrelim should always be equal
             }
         }
 
         // truncate the array to only be as big as intersectionActualSize
         int[] intersection = IntArrayOperations.truncateArray(intersectionPrelim, intersectionActualSize);
-
-
         // return the IntegerSet that contains intersection
         return new IntegerSet(intersection);
     }
@@ -271,8 +271,6 @@ public class IntegerSet {
         // sort the left and right halves recursively
         mergeSort(leftSide);
         mergeSort(rightSide);
-
-
         // merge what you sorted
         merge(array, leftSide, rightSide);
     }
@@ -302,6 +300,8 @@ public class IntegerSet {
             // move merged index
             k++;
         }
+
+        // only one of the following loops will execute
 
         // if still unmerged elements in left, copy them into merged
         while (i < left.length) {
