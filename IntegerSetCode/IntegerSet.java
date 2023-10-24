@@ -1,3 +1,5 @@
+package IntegerSetCode;
+
 import static java.lang.Math.min;
 import static java.lang.System.arraycopy;
 
@@ -11,7 +13,7 @@ public class IntegerSet {
     }
 
     /**
-     * The constructor for IntegerSet. When an IntegerSet is created it must be
+     * The constructor for IntegerSetCode.IntegerSet. When an IntegerSetCode.IntegerSet is created it must be
      * initialized with an integer array. The set will then pull out the duplicated
      * items and keep the unique integers.
      *
@@ -41,7 +43,7 @@ public class IntegerSet {
      * @param arr The array that will be used to retrieve the unique elements from.
      * @return The new integer array that contains the unique elements from arr.
      */
-
+    // nlog(n)
     private int[] uniqueElements(int[] arr) {
         // sort
         mergeSort(arr);
@@ -74,7 +76,7 @@ public class IntegerSet {
      * is in the set then return true otherwise return false. <br />
      * Example:
      * <pre>
-     * 		IntegerSet iS1 = new IntegerSet([1,2,3,4]);
+     * 		IntegerSetCode.IntegerSet iS1 = new IntegerSetCode.IntegerSet([1,2,3,4]);
      * 		iS1.contains(3); //returns true
      * 		iS2.contains(6); //returns false
      * </pre>
@@ -83,11 +85,13 @@ public class IntegerSet {
      * @return True if value is located in the set otherwise false.
      */
 
+    //O(nlog(n))
     public boolean contains(int value) {
         // an empty set does not contain anything so this should be false
         if (set == null || magnitude() == 0) {
             return false;
         }
+        mergeSort(set);
 
         // if the set is not empty, look for the element, get back an index, and return whether that index is -1
         // if the index is -1, the set does not contain the element
@@ -95,10 +99,9 @@ public class IntegerSet {
         return binarySearch(value, set, magnitude() - 1, 0) != -1;
     }
 
-
+    //O(log(n))
+    // int[] set must be sorted when passed
     public static int binarySearch(int value, int[] set, int high, int low) {
-        // binary search requires the elements be sorted
-        mergeSort(set);
         // initial index is index to be returned if not found
         int index = -1;
 
@@ -127,18 +130,19 @@ public class IntegerSet {
     /**
      * A union of two sets is a new set that contains all elements from both sets.
      * This method takes another set and unions it with the set that calls this
-     * method. A new IntegerSet is returned that contains the union of both sets.<br />
+     * method. A new IntegerSetCode.IntegerSet is returned that contains the union of both sets.<br />
      * Example:
      * <pre>
-     * 		IntegerSet is1 = new IntegerSet([1, 2, 3, 4]);
-     * 		IntegerSet is2 = new IntegerSet([3, 4, 5, 6, 7, 8]);
-     * 		is1.union(is2) //returns new IntegerSet([1, 2, 3, 4, 5, 6, 7, 8]);
+     * 		IntegerSetCode.IntegerSet is1 = new IntegerSetCode.IntegerSet([1, 2, 3, 4]);
+     * 		IntegerSetCode.IntegerSet is2 = new IntegerSetCode.IntegerSet([3, 4, 5, 6, 7, 8]);
+     * 		is1.union(is2) //returns new IntegerSetCode.IntegerSet([1, 2, 3, 4, 5, 6, 7, 8]);
      * </pre>
      *
      * @param otherSet The set to be unioned with.
-     * @return A new IntegerSet that is the union of the calling set with the
+     * @return A new IntegerSetCode.IntegerSet that is the union of the calling set with the
      * otherSet.
      */
+    // O(nlog(n))
     public IntegerSet union(IntegerSet otherSet) {
 
         // the union of 2 empty sets is empty
@@ -176,27 +180,22 @@ public class IntegerSet {
     /**
      * The intersection of two sets is a new set that contains elements that occur
      * in both sets. This method takes another set and intersects it with the set
-     * that calls this method. A new IntegerSet is returned that contains the
+     * that calls this method. A new IntegerSetCode.IntegerSet is returned that contains the
      * intersection of the two sets. <br />
      * Example:
      * <pre>
-     * 		IntegerSet is1 = new IntegerSet([1,2,3,4]);
-     * 		IntegerSet is2 = new IntegerSet([3,4,5]);
-     * 		is1.intersection(is2) //returns new IntegerSet([3, 4]);
+     * 		IntegerSetCode.IntegerSet is1 = new IntegerSetCode.IntegerSet([1,2,3,4]);
+     * 		IntegerSetCode.IntegerSet is2 = new IntegerSetCode.IntegerSet([3,4,5]);
+     * 		is1.intersection(is2) //returns new IntegerSetCode.IntegerSet([3, 4]);
      * </pre>
      *
      * @param otherSet The set to be intersected with.
-     * @return A new IntegerSet that is the intersection of the calling set with the
+     * @return A new IntegerSetCode.IntegerSet that is the intersection of the calling set with the
      * otherSet.
      */
+
+    //O(nlog(n))
     public IntegerSet intersection(IntegerSet otherSet) {
-
-        // if either set is empty, the intersection of an empty set and a non-empty set is the empty set
-        if (magnitude() == 0 || otherSet.set.length == 0) {
-            int[] emptySet = new int[0];
-            return new IntegerSet(emptySet);
-        }
-
 
         // the size of the intersection can only be as big as the size of the smaller set
         int intersectionMaxSize = min(otherSet.set.length, magnitude());
@@ -205,6 +204,8 @@ public class IntegerSet {
         // array to store the intersection, maybe has extra spaces, will truncate later
         int[] intersectionPrelim = new int[intersectionMaxSize];
 
+        // sorting now because binarySearch later requires sets to be sorted
+        mergeSort(otherSet.set);
 
         // index in new array
         int j = 0;
@@ -217,19 +218,19 @@ public class IntegerSet {
                 j++;
                 // increment the size of the intersection
                 intersectionActualSize++;
-                // because they move together, the counter of the sizew of the intersection and the index in
+                // because they move together, the counter of the size of the intersection and the index in
                 // intersectionPrelim should always be equal
             }
         }
 
         // truncate the array to only be as big as intersectionActualSize
         int[] intersection = IntArrayOperations.truncateArray(intersectionPrelim, intersectionActualSize);
-        // return the IntegerSet that contains intersection
+        // return the IntegerSetCode.IntegerSet that contains intersection
         return new IntegerSet(intersection);
     }
 
     /**
-     * Returns a string representation of an IntegerSet type. The returned string
+     * Returns a string representation of an IntegerSetCode.IntegerSet type. The returned string
      * will have the following structure.
      * <p>
      * set{ elements in the set separated by a comma }.
@@ -302,7 +303,6 @@ public class IntegerSet {
         }
 
         // only one of the following loops will execute
-
         // if still unmerged elements in left, copy them into merged
         while (i < left.length) {
             array[k] = left[i];

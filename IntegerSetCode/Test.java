@@ -1,3 +1,5 @@
+package IntegerSetCode;
+
 import java.util.Arrays;
 
 public class Test {
@@ -7,9 +9,9 @@ public class Test {
 		int[] set = iS1.getSet();
 		int[] expected = { 1, 2, 3, 4, 6, 7, 8 };
 		if (Arrays.equals(set, expected)) {
-			System.out.println("[O] Passed Constructor Test NonEmpty");
+			System.out.println("[O] Passed Constructor IntegerSetCode.Test NonEmpty");
 		} else {
-			System.out.println("[X] Failed Constructor Test NonEmpty");
+			System.out.println("[X] Failed Constructor IntegerSetCode.Test NonEmpty");
 			System.out.println("\tArray input: " + Arrays.toString(arr));
 			System.out.println("\tiS1: " + iS1);
 			System.out.println("\tExpected: " + Arrays.toString(expected));
@@ -24,16 +26,16 @@ public class Test {
 			int[] set = iS1.getSet();
 			int[] expected = {};
 			if (Arrays.equals(set, expected)) {
-				System.out.println("[O] Passed Constructor Test Empty");
+				System.out.println("[O] Passed Constructor IntegerSetCode.Test Empty");
 			} else {
-				System.out.println("[X] Failed Constructor Test Empty");
+				System.out.println("[X] Failed Constructor IntegerSetCode.Test Empty");
 				System.out.println("\tArray input: " + Arrays.toString(arr));
 				System.out.println("\tiS1: " + iS1);
 				System.out.println("\tExpected: " + Arrays.toString(expected));
 				System.out.println("\tActual: " + Arrays.toString(set));
 			}
 		} catch (Exception e) {
-			System.out.println("[X] Constructor Test Empty: " + e.getClass().getName());
+			System.out.println("[X] Constructor IntegerSetCode.Test Empty: " + e.getClass().getName());
 			e.printStackTrace();
 		}
 	}
@@ -44,9 +46,9 @@ public class Test {
 		int value = -36;
 		boolean result = iS1.contains(value);
 		if (result) {
-			System.out.println("[O] Passed Contains Test Non Empty True");
+			System.out.println("[O] Passed Contains IntegerSetCode.Test Non Empty True");
 		} else {
-			System.out.println("[X] Failed Contains Test Non Empty True");
+			System.out.println("[X] Failed Contains IntegerSetCode.Test Non Empty True");
 			System.out.println("\tArray input: " + Arrays.toString(arr));
 			System.out.println("\tiS1: " + iS1);
 			System.out.println("\tContains: " + value);
@@ -61,9 +63,9 @@ public class Test {
 		int value = -100;
 		boolean result = iS1.contains(value);
 		if (!result) {
-			System.out.println("[O] Passed Contains Test Non Empty False");
+			System.out.println("[O] Passed Contains IntegerSetCode.Test Non Empty False");
 		} else {
-			System.out.println("[X] Failed Contains Test Non Empty False");
+			System.out.println("[X] Failed Contains IntegerSetCode.Test Non Empty False");
 			System.out.println("\tArray input: " + Arrays.toString(arr));
 			System.out.println("\tiS1: " + iS1);
 			System.out.println("\tContains: " + value);
@@ -79,9 +81,9 @@ public class Test {
 			int value = -100;
 			boolean result = iS1.contains(value);
 			if (!result) {
-				System.out.println("[O] Passed Contains Test Empty False");
+				System.out.println("[O] Passed Contains IntegerSetCode.Test Empty False");
 			} else {
-				System.out.println("[X] Failed Contains Test Empty False");
+				System.out.println("[X] Failed Contains IntegerSetCode.Test Empty False");
 				System.out.println("\tArray input: " + Arrays.toString(arr));
 				System.out.println("\tiS1: " + iS1);
 				System.out.println("\tContains: " + value);
@@ -214,7 +216,7 @@ public class Test {
 				System.out.println("\tActual: " + Arrays.toString(set));
 			}
 		} catch (Exception e) {
-			System.out.println("[X] Test Intersection: " + e.getClass().getName());
+			System.out.println("[X] IntegerSetCode.Test Intersection: " + e.getClass().getName());
 			e.printStackTrace();
 		}
 	}

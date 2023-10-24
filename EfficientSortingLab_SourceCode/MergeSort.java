@@ -27,7 +27,7 @@ public class MergeSort {
         sort(leftSide);
         sort(rightSide);
 
-        // merge what you sorted
+        // merge what you sorted-- this is where the sorting actually happens
         merge(arr, leftSide, rightSide);
     }
 
